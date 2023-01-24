@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Modal } from "react-bootstrap";
 import NavbarCommon from "../../common/Navbar";
 import HeaderCommon from "../../common/Header";
 import CardHeaderCommon from "../../common/CardHeader";
@@ -23,7 +23,24 @@ export default function UserPage() {
         </Card>
       </Container>
 
-      <ModalCommon title="Add User" show={show} setShow={setShow} />
+      <ModalCommon
+        title="Add User"
+        show={show}
+        setShow={setShow}
+        content={
+          <>
+            <Modal.Body> modal!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShow(false)}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={() => setShow(false)}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </>
+        }
+      />
     </>
   );
 }
