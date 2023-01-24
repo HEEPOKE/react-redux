@@ -18,6 +18,9 @@ export default function NavbarCommon() {
             <LinkContainer to="/product">
               <Nav.Link>Product</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/user">
+              <Nav.Link>User</Nav.Link>
+            </LinkContainer>
             <NavDropdown title="Manage" id="nav-dropdown" menuVariant="dark">
               <LinkContainer to="/create-product">
                 <NavDropdown.Item>Create</NavDropdown.Item>

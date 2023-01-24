@@ -1,5 +1,11 @@
-import React from "react";
+import NavbarCommon from "../../common/Navbar";
+import HeaderCommon from "../../common/Header";
 
 export default function UserPage() {
-  return <div>UserPage</div>;
+  return (
+    <>
+      <NavbarCommon />
+      <HeaderCommon name="UserList" />
+    </>
+  );
 }
