@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Card, Container, Modal } from "react-bootstrap";
 import NavbarCommon from "../../common/Navbar";
 import HeaderCommon from "../../common/Header";
@@ -6,8 +6,24 @@ import CardHeaderCommon from "../../common/CardHeader";
 import ButtonModal from "../../common/ButtonModal";
 import ModalCommon from "../../common/ModalCommon";
 import TableCommon from "../../common/Table";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function UserPage() {
+  const {
+    User,
+    setUser,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    role,
+    setRole,
+    handlerSubmit,
+    reGetUser,
+  } = useContext(UserContext);
+
   const [show, setShow] = useState(false);
   return (
     <>

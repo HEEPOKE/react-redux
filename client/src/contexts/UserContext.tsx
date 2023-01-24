@@ -19,8 +19,6 @@ interface UserContextProps {
   setRole: (value: string) => void;
   handlerSubmit: () => void;
   reGetUser: () => void;
-  show: boolean;
-  setShow: (value: boolean) => void;
 }
 
 export const UserContext = createContext<UserContextProps>({
@@ -36,8 +34,6 @@ export const UserContext = createContext<UserContextProps>({
   setRole: (value: string) => {},
   handlerSubmit: () => {},
   reGetUser: () => {},
-  show: false,
-  setShow: (value: boolean) => {},
 });
 
 export function UserContextProvider({ children }: ChildrenProps) {
@@ -72,7 +68,10 @@ export function UserContextProvider({ children }: ChildrenProps) {
   );
 
   const clearInputValue = () => {
-    setShow(false);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setRole("");
   };
 
   const handlerSubmit = useMemo(
@@ -84,7 +83,6 @@ export function UserContextProvider({ children }: ChildrenProps) {
         role,
       };
 
-      setShow(true);
       addUser(baseInsert);
       clearInputValue();
     },
@@ -116,8 +114,6 @@ export function UserContextProvider({ children }: ChildrenProps) {
       setRole,
       handlerSubmit,
       reGetUser,
-      show,
-      setShow,
     }),
     [
       User,
@@ -132,8 +128,6 @@ export function UserContextProvider({ children }: ChildrenProps) {
       setRole,
       handlerSubmit,
       reGetUser,
-      show,
-      setShow,
     ]
   );
 
