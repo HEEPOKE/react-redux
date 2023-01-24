@@ -1,7 +1,11 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 import GetUserResponse from "../models/Response/UserResponse";
 import UserRequest from "../models/Request/UserRequest";
+import userServices from "../services/userServices";
 
+interface ChildrenProps {
+  children: ReactNode;
+}
 interface UserContextProps {
   User: GetUserResponse[];
   setUser: (value: GetUserResponse[]) => void;
@@ -15,7 +19,7 @@ interface UserContextProps {
   setRole: (value: string) => void;
   handlerSubmit: () => void;
   reGetUser: () => void;
-  Show: boolean;
+  show: boolean;
   setShow: (value: boolean) => void;
 }
 
@@ -32,13 +36,9 @@ export const UserContext = createContext<UserContextProps>({
   setRole: (value: string) => {},
   handlerSubmit: () => {},
   reGetUser: () => {},
-  Show: false,
+  show: false,
   setShow: (value: boolean) => {},
 });
-
-interface ChildrenProps {
-  children: ReactNode;
-}
 
 export function UserContextProvider({ children }: ChildrenProps) {
   const [User, setUser] = useState<GetUserResponse[]>([]);
@@ -46,30 +46,30 @@ export function UserContextProvider({ children }: ChildrenProps) {
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<string>("");
-  const [Show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const reGetUser = useMemo(
     () => () => {
-      // UserServices.getUser().then((res) => {
-      //   setUser(res.data);
-      // });
+      userServices.getUser().then((res: any) => {
+        setUser(res.data);
+      });
     },
     []
   );
 
-  //   const insertUser = useMemo(
-  //     () => (data: any) => {
-  //       UserServices.insertUser(data)
-  //         .then((res) => {
-  //           AlertSuccess(res.data.message);
-  //           reGetUser();
-  //         })
-  //         .catch((err) => {
-  //           AlertError(err.response.data.message);
-  //         });
-  //     },
-  //     [reGetUser]
-  //   );
+  // const insertUser = useMemo(
+  //   () => (payload: any) => {
+  //     userServices
+  //       .insertUser(payload)
+  //       .then((res: any) => {
+  //         reGetUser();
+  //       })
+  //       .catch((err: any) => {
+  //         // AlertError(err.response.payload.message);
+  //       });
+  //   },
+  //   [reGetUser]
+  // );
 
   const clearInputValue = () => {
     setShow(false);
@@ -77,22 +77,34 @@ export function UserContextProvider({ children }: ChildrenProps) {
 
   const handlerSubmit = useMemo(
     () => () => {
-      const baseInsert: UserRequest = {};
+      const baseInsert: UserRequest = {
+        firstName,
+        lastName,
+        email,
+        role,
+      };
 
       setShow(true);
-      // insertUser(camelToSnakeObject(baseInsert));
+      // insertUser(baseInsert);
       clearInputValue();
     },
-    [insertUser]
+    [
+      firstName,
+      lastName,
+      email,
+      role,
+      // insertUser
+    ]
   );
 
   useEffect(() => {
-    UserServices.getUser()
+    userServices
+      .getUser()
       .then((res: any) => {
         setUser(res.data);
       })
       .catch((err: any) => {
-        // AlertError(err.response.data.message);
+        console.log(err);
       });
   }, []);
 
@@ -108,6 +120,10 @@ export function UserContextProvider({ children }: ChildrenProps) {
       setEmail,
       role,
       setRole,
+      handlerSubmit,
+      reGetUser,
+      show,
+      setShow,
     }),
     [
       User,
@@ -120,6 +136,10 @@ export function UserContextProvider({ children }: ChildrenProps) {
       setEmail,
       role,
       setRole,
+      handlerSubmit,
+      reGetUser,
+      show,
+      setShow,
     ]
   );
 
