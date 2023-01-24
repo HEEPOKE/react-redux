@@ -5,6 +5,7 @@ import HeaderCommon from "../../common/Header";
 import CardHeaderCommon from "../../common/CardHeader";
 import ButtonModal from "../../common/ButtonModal";
 import ModalCommon from "../../common/ModalCommon";
+import TableCommon from "../../common/Table";
 
 export default function UserPage() {
   const [show, setShow] = useState(false);
@@ -18,6 +19,12 @@ export default function UserPage() {
           <Card.Body>
             <Container fluid>
               <ButtonModal variant="primary" name="add" setShow={setShow} />
+              <TableCommon
+                variant="dark"
+                className="mt-3"
+                columns={["#", "Name", "Email", "Role", "Manage"]}
+                row={<></>}
+              />
             </Container>
           </Card.Body>
         </Card>
