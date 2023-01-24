@@ -4,7 +4,7 @@ import HeaderCommon from "../../common/Header";
 export default function HomePage() {
   return (
     <>
-      <NavbarCommon />;
+      <NavbarCommon />
       <HeaderCommon name="HomePage" />
     </>
   );
