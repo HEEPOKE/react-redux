@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { config } from "dotenv";
-config();
+import EnvironmentPlugin from "vite-plugin-environment";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), EnvironmentPlugin("all", { defineOn: "import.meta.env" })],
+  define: {
+    global: {},
+  },
 });
