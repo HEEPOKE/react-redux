@@ -57,19 +57,19 @@ export function UserContextProvider({ children }: ChildrenProps) {
     []
   );
 
-  // const insertUser = useMemo(
-  //   () => (payload: any) => {
-  //     userServices
-  //       .insertUser(payload)
-  //       .then((res: any) => {
-  //         reGetUser();
-  //       })
-  //       .catch((err: any) => {
-  //         // AlertError(err.response.payload.message);
-  //       });
-  //   },
-  //   [reGetUser]
-  // );
+  const addUser = useMemo(
+    () => (payload: any) => {
+      userServices
+        .addUser(payload)
+        .then((res: any) => {
+          reGetUser();
+        })
+        .catch((err: any) => {
+          // AlertError(err.response.payload.message);
+        });
+    },
+    [reGetUser]
+  );
 
   const clearInputValue = () => {
     setShow(false);
@@ -85,16 +85,10 @@ export function UserContextProvider({ children }: ChildrenProps) {
       };
 
       setShow(true);
-      // insertUser(baseInsert);
+      addUser(baseInsert);
       clearInputValue();
     },
-    [
-      firstName,
-      lastName,
-      email,
-      role,
-      // insertUser
-    ]
+    [firstName, lastName, email, role, addUser]
   );
 
   useEffect(() => {

@@ -5,6 +5,10 @@ const getUser = () => {
   return http.get<GetUserResponse[]>(`api/users/get`);
 };
 
-const userServices = { getUser };
+const addUser = (payload: any) => {
+  return http.post(`api/users/add`, payload);
+};
+
+const userServices = { getUser, addUser };
 
 export default userServices;
