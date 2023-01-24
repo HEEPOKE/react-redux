@@ -7,7 +7,7 @@ export default function CardHeaderCommon({
 }: CardHeaderInterface) {
   return (
     <Card.Header className={className}>
-      <h4 className="mt-2">{title}</h4>
+      <h4 className="mt-3">{title}</h4>
     </Card.Header>
   );
 }
