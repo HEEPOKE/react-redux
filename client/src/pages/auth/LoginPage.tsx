@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import FormInputAuthCommon from "../../common/auth/FormInputAuth";
 
 export default function LoginPage() {
   const [validated, setValidated] = useState(false);
@@ -45,25 +46,22 @@ export default function LoginPage() {
               <h4>Login</h4>
             </div>
             <Form noValidate validated={validated} onSubmit={Validation}>
-              <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e: any) => setEmail(e.target.value)}
-                  placeholder="Enter Email"
-                  required
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  minLength={8}
-                  onChange={(e: any) => setPassword(e.target.value)}
-                  placeholder="Enter Password"
-                  required
-                />
-              </Form.Group>
+              <FormInputAuthCommon
+                label="Email"
+                type="email"
+                setValue={setEmail}
+                placeholder="Enter Email"
+                required={true}
+              />
+              <FormInputAuthCommon
+                mb="mb-3"
+                label="Password"
+                type="password"
+                minLength={8}
+                setValue={setPassword}
+                placeholder="Enter Password"
+                required={true}
+              />
               <Form.Group
                 className="d-flex justify-content-between align-items-center"
                 controlId="formBasicCheckbox"
