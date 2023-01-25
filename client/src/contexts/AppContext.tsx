@@ -1,5 +1,9 @@
 import { createContext, ReactNode, useMemo, useState } from "react";
 
+interface ChildrenProps {
+  children: ReactNode;
+}
+
 interface AppContextProps {
   pathUrl: string;
   setPathUrl: (pathUrl: string) => void;
@@ -11,10 +15,6 @@ export const AppContext = createContext<AppContextProps>({
   setPathUrl: () => {},
   isLogin: false,
 });
-
-interface ChildrenProps {
-  children: ReactNode;
-}
 
 export function AppContextProvider({ children }: ChildrenProps) {
   const [pathUrl, setPathUrl] = useState<string>(window.location.pathname);
