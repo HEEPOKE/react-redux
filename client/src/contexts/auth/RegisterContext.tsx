@@ -77,7 +77,7 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
       if (confirmPassword != password) {
         let message = "รหัสผ่านไม่ตรงกัน";
         ValidateUtils.ErrorMessage(message);
-      } else if (password.length <= 8 || password.length >= 20) {
+      } else if (password.length < 8 || password.length > 20) {
         let message = "รหัสผ่านควรมีความยาว 8-20 ตัว";
         ValidateUtils.ErrorMessage(message);
       } else if (firstName === "" || lastName === "" || email === "") {
