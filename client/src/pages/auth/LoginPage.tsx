@@ -52,6 +52,7 @@ export default function LoginPage() {
                 setValue={setEmail}
                 placeholder="Enter Email"
                 required={true}
+                text="Please Enter Email"
               />
               <FormInputAuthCommon
                 mb="mb-3"
@@ -61,6 +62,7 @@ export default function LoginPage() {
                 setValue={setPassword}
                 placeholder="Enter Password"
                 required={true}
+                text="Please Enter Password"
               />
               <Form.Group
                 className="d-flex justify-content-between align-items-center"

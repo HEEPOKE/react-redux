@@ -7,8 +7,8 @@ export default function FormInputAuthCommon({
   type,
   value,
   setValue,
-  maxLength,
   minLength,
+  maxLength,
   placeholder,
   required,
 }: FormInputInterface) {

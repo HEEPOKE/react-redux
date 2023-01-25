@@ -1,6 +1,8 @@
 import { Suspense, lazy, useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppContext } from "../contexts/AppContext";
+import { LoginContextProvider } from "../contexts/auth/LoginContext";
+import { RegisterContextProvider } from "../contexts/auth/RegisterContext";
 import { UserContextProvider } from "../contexts/UserContext";
 
 const HomePage = lazy(() => import("../pages/home"));
@@ -21,8 +23,22 @@ export default function AppRouter() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/register" element={<RegisterPage />} />
+          <Route
+            path="/auth/login"
+            element={
+              <LoginContextProvider>
+                <LoginPage />
+              </LoginContextProvider>
+            }
+          />
+          <Route
+            path="/auth/register"
+            element={
+              <RegisterContextProvider>
+                <RegisterPage />
+              </RegisterContextProvider>
+            }
+          />
           <Route
             path="/user"
             element={
