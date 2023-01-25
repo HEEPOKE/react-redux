@@ -3,13 +3,13 @@ import { createContext, ReactNode, useMemo, useState } from "react";
 interface AppContextProps {
   pathUrl: string;
   setPathUrl: (pathUrl: string) => void;
-  isLogin: string;
+  isLogin: string | boolean;
 }
 
 export const AppContext = createContext<AppContextProps>({
   pathUrl: "",
   setPathUrl: () => {},
-  isLogin: "",
+  isLogin: false,
 });
 
 interface ChildrenProps {
@@ -18,7 +18,7 @@ interface ChildrenProps {
 
 export function AppContextProvider({ children }: ChildrenProps) {
   const [pathUrl, setPathUrl] = useState<string>(window.location.pathname);
-  const isLogin = sessionStorage.getItem("account") ?? "";
+  const isLogin = sessionStorage.getItem("access_token") ?? false;
 
   const values = useMemo(
     () => ({

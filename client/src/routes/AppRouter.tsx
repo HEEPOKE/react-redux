@@ -1,5 +1,6 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AppContext } from "../contexts/AppContext";
 import { UserContextProvider } from "../contexts/UserContext";
 
 const HomePage = lazy(() => import("../pages/home"));
@@ -8,6 +9,13 @@ const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 
 export default function AppRouter() {
+  const { isLogin } = useContext(AppContext);
+
+  useEffect(() => {
+    if (!isLogin && window.location.pathname !== "/auth/login") {
+      window.location.href = "/auth/login";
+    }
+  }, []);
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
@@ -19,7 +27,7 @@ export default function AppRouter() {
             path="/user"
             element={
               <UserContextProvider>
-                <UserPage />{" "}
+                <UserPage />
               </UserContextProvider>
             }
           />
