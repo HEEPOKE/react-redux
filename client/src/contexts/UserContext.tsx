@@ -42,7 +42,6 @@ export function UserContextProvider({ children }: ChildrenProps) {
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<string>("");
-  const [show, setShow] = useState(false);
 
   const reGetUser = useMemo(
     () => () => {
