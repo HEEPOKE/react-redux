@@ -7,18 +7,18 @@ interface ChildrenProps {
 interface AppContextProps {
   pathUrl: string;
   setPathUrl: (pathUrl: string) => void;
-  isLogin: string | boolean;
+  isLogin: string;
 }
 
 export const AppContext = createContext<AppContextProps>({
   pathUrl: "",
   setPathUrl: () => {},
-  isLogin: false,
+  isLogin: "",
 });
 
 export function AppContextProvider({ children }: ChildrenProps) {
   const [pathUrl, setPathUrl] = useState<string>(window.location.pathname);
-  const isLogin = sessionStorage.getItem("access_token") ?? false;
+  const isLogin = sessionStorage.getItem("access_token") ?? "";
 
   const values = useMemo(
     () => ({

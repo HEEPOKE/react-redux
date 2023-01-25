@@ -14,7 +14,7 @@ export default function AppRouter() {
   const { isLogin } = useContext(AppContext);
 
   useEffect(() => {
-    if (!isLogin && window.location.pathname !== "/auth/login") {
+    if (isLogin == "" && window.location.pathname !== "/auth/login") {
       window.location.href = "/auth/login";
     }
   }, []);

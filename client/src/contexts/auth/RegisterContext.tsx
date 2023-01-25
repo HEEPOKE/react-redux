@@ -55,6 +55,9 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
         .register(payload)
         .then((res: any) => {
           clearInputValue();
+
+          const accessToken = res.data.access_token;
+          sessionStorage.setItem("access_token", accessToken);
         })
         .catch((err: any) => {
           console.log(err);
