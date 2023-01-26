@@ -48,8 +48,8 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
       authServices
         .register(payload)
         .then((res: any) => {
-          const accessToken = res.data.access_token;
-          sessionStorage.setItem("access_token", accessToken);
+          const accessToken = res.data.Authorization;
+          sessionStorage.setItem("Authorization", accessToken);
 
           let message = "สมัครสมาชิกสำเร็จเเล้ว กดไปเพื่อเข้าสู่ระบบ";
           AuthUtils.LoginSwal(message);

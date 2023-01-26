@@ -31,8 +31,8 @@ export function LoginContextProvider({ children }: ChildrenProps) {
       authServices
         .login(payload)
         .then((res: any) => {
-          const token = res.data.access_token;
-          sessionStorage.setItem("access_token", token);
+          const token = res.data.Authorization;
+          sessionStorage.setItem("Authorization", token);
 
           let message = "เข้าสู่ระบบสำเร็จ กด Go เพื่อเข้าสู่ระบบ";
 

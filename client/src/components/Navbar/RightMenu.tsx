@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavLogout from "./NavLogout";
 
 export default function RightMenu() {
-  const access_token = sessionStorage.getItem("access_token");
+  const Authorization = sessionStorage.getItem("Authorization");
 
-  if (access_token != null) {
+  if (Authorization != null) {
     return (
       <>
         <NavDropdown title="Profile" id="nav-dropdown" menuVariant="dark">

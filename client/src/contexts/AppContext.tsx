@@ -18,7 +18,7 @@ export const AppContext = createContext<AppContextProps>({
 
 export function AppContextProvider({ children }: ChildrenProps) {
   const [pathUrl, setPathUrl] = useState<string>(window.location.pathname);
-  const isLogin = sessionStorage.getItem("access_token") ?? "";
+  const isLogin = sessionStorage.getItem("Authorization") ?? "";
 
   const values = useMemo(
     () => ({
