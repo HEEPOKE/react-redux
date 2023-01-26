@@ -92,7 +92,7 @@ export function UserContextProvider({ children }: ChildrenProps) {
     userServices
       .getUser()
       .then((res: any) => {
-        setUser(res.data);
+        setUser(res.data.payload);
       })
       .catch((err: any) => {
         console.log(err);
