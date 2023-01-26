@@ -16,7 +16,7 @@ export default function RegisterPage() {
   return (
     <section className="vh-100">
       <div className="container-fluid h-custom">
-        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100 mt-3">
           <div className="col-md-9 col-lg-6 col-xl-5">
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
@@ -75,7 +75,7 @@ export default function RegisterPage() {
               />
               <Button
                 type="submit"
-                className="btn-lg mt-2 col-12"
+                className="btn-lg mt-2 mb-5 col-12"
                 variant="primary"
                 onClick={handlerSubmit}
               >

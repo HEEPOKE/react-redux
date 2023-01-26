@@ -51,7 +51,7 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
           const accessToken = res.data.access_token;
           sessionStorage.setItem("access_token", accessToken);
 
-          let message = "สมัครสมาชิกสำเร็จเเล้ว กดเพื่อเข้าสู่ระบบ";
+          let message = "สมัครสมาชิกสำเร็จเเล้ว กดไปเพื่อเข้าสู่ระบบ";
           AuthUtils.LoginSwal(message);
         })
         .catch((err: any) => {

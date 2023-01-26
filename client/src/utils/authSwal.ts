@@ -5,6 +5,7 @@ const LoginSwal = (message: string) => {
     icon: "success",
     text: `${message}`,
     showConfirmButton: true,
+    confirmButtonText: "Go",
   }).then((res: any) => {
     if (res.isConfirmed) {
       window.location.href = "/";
