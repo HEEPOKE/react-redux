@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function UserPage() {
   const {
-    user,
+    User,
     setUser,
     firstName,
     setFirstName,
@@ -40,7 +40,7 @@ export default function UserPage() {
                 variant="dark"
                 className="mt-3"
                 columns={["#", "Name", "Email", "Role", "Manage"]}
-                row={user.map((item: any, i: any) => (
+                row={User.map((item: any, i: any) => (
                   <tr key={i}>
                     <td>{item.ID}</td>
                     <td>
