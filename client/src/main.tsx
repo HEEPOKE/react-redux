@@ -11,6 +11,7 @@ import {
 import { AppContextProvider } from "./contexts/AppContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import "./assets/css/auth.css";
 
 library.add(fas, faSquarePen, faTrashCan, faUser, faRightFromBracket);
 

@@ -2,6 +2,7 @@ import { createContext, ReactNode, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RegisterRequest from "../../models/Request/RegisterRequest";
 import authServices from "../../services/authServices";
+import AuthUtils from "../../utils/authSwal";
 import ValidateUtils from "../../utils/ValidateSwal";
 
 interface ChildrenProps {
@@ -42,8 +43,6 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const navigate = useNavigate();
-
   const Register = useMemo(
     () => (payload: any) => {
       authServices
@@ -51,7 +50,9 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
         .then((res: any) => {
           const accessToken = res.data.access_token;
           sessionStorage.setItem("access_token", accessToken);
-          navigate("/");
+
+          let message = "สมัครสมาชิกสำเร็จเเล้ว กดเพื่อเข้าสู่ระบบ";
+          AuthUtils.LoginSwal(message);
         })
         .catch((err: any) => {
           console.log(err);
