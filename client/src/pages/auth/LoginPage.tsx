@@ -2,33 +2,12 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import FormInputAuthCommon from "../../common/auth/FormInputAuth";
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/auth/LoginContext";
 
 export default function LoginPage() {
-  const [validated, setValidated] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { setEmail, setPassword, handlerSubmit } = useContext(LoginContext);
   const [remember, setRemember] = useState(false);
-
-  const Validation = (e: any) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    setValidated(true);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-    var data = {
-      email: email,
-      password: password,
-    };
-
-    //   AuthApiServices.loginApi(data);
-  };
 
   return (
     <section className="vh-100">
@@ -45,7 +24,7 @@ export default function LoginPage() {
             <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mb-3">
               <h4>Login</h4>
             </div>
-            <Form noValidate validated={validated} onSubmit={Validation}>
+            <Form>
               <FormInputAuthCommon
                 label="Email"
                 type="email"
@@ -74,8 +53,7 @@ export default function LoginPage() {
               <Button
                 className="btn-lg mt-2 col-12"
                 variant="primary"
-                onClick={handleSubmit}
-                type="submit"
+                onClick={handlerSubmit}
               >
                 Login
               </Button>

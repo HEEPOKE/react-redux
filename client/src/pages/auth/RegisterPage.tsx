@@ -74,7 +74,6 @@ export default function RegisterPage() {
                 required={true}
               />
               <Button
-                type="submit"
                 className="btn-lg mt-2 mb-5 col-12"
                 variant="primary"
                 onClick={handlerSubmit}

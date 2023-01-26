@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useMemo, useState } from "react";
 import LoginRequest from "../../models/Request/LoginRequest";
 import authServices from "../../services/authServices";
+import AuthUtils from "../../utils/authSwal";
 
 interface ChildrenProps {
   children: ReactNode;
@@ -25,20 +26,20 @@ export function LoginContextProvider({ children }: ChildrenProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const clearInputValue = () => {
-    setEmail("");
-    setPassword("");
-  };
-
   const Login = useMemo(
     () => (payload: any) => {
       authServices
         .login(payload)
         .then((res: any) => {
-          clearInputValue();
+          const token = res.data.access_token;
+          sessionStorage.setItem("access_token", token);
+
+          let message = "เข้าสู่ระบบสำเร็จ กด Go เพื่อเข้าสู่ระบบ";
+
+          AuthUtils.LoginSwal(message);
         })
         .catch((err: any) => {
-          // AlertError(err.response.payload.message);
+          console.log(err);
         });
     },
     []
