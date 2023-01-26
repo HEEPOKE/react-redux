@@ -6,7 +6,6 @@ const ErrorMessage = (message: string) => {
     text: message,
     showConfirmButton: false,
     showDenyButton: true,
-    showCancelButton: true,
     denyButtonText: "Close",
   });
 };

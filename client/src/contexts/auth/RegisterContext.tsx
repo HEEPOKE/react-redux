@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RegisterRequest from "../../models/Request/RegisterRequest";
 import authServices from "../../services/authServices";
 import ValidateUtils from "../../utils/ValidateSwal";
@@ -41,23 +42,16 @@ export function RegisterContextProvider({ children }: ChildrenProps) {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const clearInputValue = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-  };
+  const navigate = useNavigate();
 
   const Register = useMemo(
     () => (payload: any) => {
       authServices
         .register(payload)
         .then((res: any) => {
-          clearInputValue();
-
           const accessToken = res.data.access_token;
           sessionStorage.setItem("access_token", accessToken);
+          navigate("/");
         })
         .catch((err: any) => {
           console.log(err);
