@@ -8,6 +8,10 @@ const register = (payload: any) => {
   return http.post(`api/auth/register`, payload);
 };
 
-const authServices = { login, register };
+const refreshToken = (token: string) => {
+  return http.post(`api/auth/refreshToken`, token);
+};
+
+const authServices = { login, register, refreshToken };
 
 export default authServices;
