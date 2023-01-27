@@ -47,7 +47,7 @@ export default function UserPage() {
                       {item.firstName} {item.lastName}
                     </td>
                     <td>{item.email}</td>
-                    <td>{item.role}</td>
+                    <td>{item.ROLE}</td>
                     <td>
                       <Button type="button" className="btn btn-warning mx-2">
                         <FontAwesomeIcon icon={["fas", "pen"]} size={"xl"} />
