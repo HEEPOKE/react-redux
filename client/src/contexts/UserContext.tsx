@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
-import GetUserResponse from "../models/Response/UserResponse";
+import GetUserResponse from "../models/Response/GetUserResponse";
 import UserRequest from "../models/Request/UserRequest";
 import userServices from "../services/userServices";
 

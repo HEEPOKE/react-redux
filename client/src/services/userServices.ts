@@ -1,6 +1,6 @@
 import http from "../http";
 import getToken from "../http/GetToken";
-import GetUserResponse from "../models/Response/UserResponse";
+import GetUserResponse from "../models/Response/GetUserResponse";
 
 const getUser = () => {
   return http.get<GetUserResponse[]>(`api/users/list`, { headers: getToken() });
