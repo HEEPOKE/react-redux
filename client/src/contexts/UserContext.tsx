@@ -7,7 +7,7 @@ interface ChildrenProps {
   children: ReactNode;
 }
 interface UserContextProps {
-  User: GetUserResponse[];
+  user: GetUserResponse[];
   setUser: (value: GetUserResponse[]) => void;
   firstName: string;
   setFirstName: (value: string) => void;
@@ -22,7 +22,7 @@ interface UserContextProps {
 }
 
 export const UserContext = createContext<UserContextProps>({
-  User: [],
+  user: [],
   setUser: (value: GetUserResponse[]) => {},
   firstName: "",
   setFirstName: (value: string) => {},
@@ -37,7 +37,7 @@ export const UserContext = createContext<UserContextProps>({
 });
 
 export function UserContextProvider({ children }: ChildrenProps) {
-  const [User, setUser] = useState<GetUserResponse[]>([]);
+  const [user, setUser] = useState<GetUserResponse[]>([]);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -101,7 +101,7 @@ export function UserContextProvider({ children }: ChildrenProps) {
 
   const values = useMemo(
     () => ({
-      User,
+      user,
       setUser,
       firstName,
       setFirstName,
@@ -115,7 +115,7 @@ export function UserContextProvider({ children }: ChildrenProps) {
       reGetUser,
     }),
     [
-      User,
+      user,
       setUser,
       firstName,
       setFirstName,

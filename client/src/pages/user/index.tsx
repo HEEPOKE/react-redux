@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function UserPage() {
   const {
-    User,
+    user,
     setUser,
     firstName,
     setFirstName,
@@ -40,14 +40,14 @@ export default function UserPage() {
                 variant="dark"
                 className="mt-3"
                 columns={["#", "Name", "Email", "Role", "Manage"]}
-                row={User.map((item: any, i: any) => (
+                row={user.map((item: any, i: any) => (
                   <tr key={i}>
                     <td>{item.ID}</td>
                     <td>
-                      `${item.FIRST_NAME} ${item.LAST_NAME}`
+                      {item.firstName} {item.lastName}
                     </td>
-                    <td>{item.EMAIL}</td>
-                    <td>{item.ROLE}</td>
+                    <td>{item.email}</td>
+                    <td>{item.role}</td>
                     <td>
                       <Button type="button" className="btn btn-warning mx-2">
                         <FontAwesomeIcon icon={["fas", "pen"]} size={"xl"} />

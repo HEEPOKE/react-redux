@@ -5,3 +5,5 @@ export default interface GetUserResponse {
     EMAIL: string;
     ROLE: string;
   }
+
+  
