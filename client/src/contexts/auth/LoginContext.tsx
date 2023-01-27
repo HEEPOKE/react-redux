@@ -32,7 +32,10 @@ export function LoginContextProvider({ children }: ChildrenProps) {
         .login(payload)
         .then((res: any) => {
           const token = res.data.Authorization;
+          const refresh_token = res.data.refreshToken;
+
           sessionStorage.setItem("Authorization", token);
+          sessionStorage.setItem("refresh_token", refresh_token);
 
           let message = "เข้าสู่ระบบสำเร็จ กด Go เพื่อเข้าสู่ระบบ";
 
