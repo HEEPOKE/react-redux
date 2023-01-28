@@ -26,14 +26,21 @@ export function AppContextProvider({ children }: ChildrenProps) {
   const [isLoading, setIsLoading] = useState(false);
   const isLogin = sessionStorage.getItem("Authorization") ?? "";
 
-  const AccessTokenExp = () => {
-    const expiration = sessionStorage.getItem("tokenExp") ?? false;
-    const currentTime = Date.now().valueOf() / 1000;
+  const AccessTokenExp = (): boolean => {
+    const tokenExp = sessionStorage.getItem("tokenExp") ?? false;
 
-    if (!expiration) {
+    if (!tokenExp) {
       return false;
     }
-    return Number(currentTime) > Number(expiration);
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    const expTime = Number(tokenExp);
+
+    if (expTime - currentTime > 3600) {
+      return true;
+    }
+
+    return false;
   };
 
   useEffect(() => {
@@ -48,8 +55,11 @@ export function AppContextProvider({ children }: ChildrenProps) {
           authServices
             .refreshToken(access_token)
             .then((res: any) => {
-              sessionStorage.setItem("Authorization", res.access_token);
-              sessionStorage.setItem("tokenExp", res.tokenExp);
+              const Authorization = res.payload.Authorization;
+              const TokenExp = res.payload.Token_Exp;
+
+              sessionStorage.setItem("Authorization", Authorization);
+              sessionStorage.setItem("tokenExp", TokenExp);
               setIsLoading(false);
             })
             .catch((err) => {
