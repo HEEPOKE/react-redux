@@ -36,10 +36,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
     const currentTime = Math.floor(Date.now() / 1000);
     const expTime = Number(tokenExp);
 
-    if (expTime - currentTime > 3600) {
+    if (expTime > currentTime + 3600) {
       return true;
     }
-
     return false;
   };
 
@@ -48,9 +47,9 @@ export function AppContextProvider({ children }: ChildrenProps) {
       if (AccessTokenExp()) {
         setIsLoading(true);
         const access_token = sessionStorage.getItem("Authorization") ?? false;
+
         if (!access_token) {
           setIsLoading(false);
-          console.log("false");
         } else {
           authServices
             .refreshToken(access_token)
