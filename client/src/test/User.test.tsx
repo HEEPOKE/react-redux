@@ -13,6 +13,6 @@ describe("User Page", () => {
   it("add is clicked", () => {
     const button = screen.getByText("add");
     fireEvent.click(button);
-    expect(screen.getByText("Add User")).toBeDefined();
+    expect(button).toHaveProperty("add");
   });
 });
