@@ -15,8 +15,14 @@ import "./assets/css/auth.css";
 
 library.add(fas, faSquarePen, faTrashCan, faUser, faRightFromBracket);
 
+export default function App() {
+  return (
+    <AppContextProvider>
+      <AppRouter />
+    </AppContextProvider>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <AppContextProvider>
-    <AppRouter />
-  </AppContextProvider>
+  App()
 );
