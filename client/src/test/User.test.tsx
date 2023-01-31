@@ -11,7 +11,7 @@ describe("User Page", () => {
   });
 
   it("add is clicked", () => {
-    const button = screen.getByText(/Open/i);
+    const button = screen.getByText("add");
     fireEvent.click(button);
     expect(screen.getByText("Add User")).toBeDefined();
   });
