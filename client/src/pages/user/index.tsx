@@ -26,6 +26,7 @@ export default function UserPage() {
   } = useContext(UserContext);
 
   const [show, setShow] = useState(false);
+
   return (
     <>
       <NavbarCommon />
